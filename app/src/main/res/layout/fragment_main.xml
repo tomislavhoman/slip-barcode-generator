@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="30"
         android:hint="@string/payer_name"/>
 
     <TextView
@@ -32,6 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="27"
+        android:lines="2"
         android:hint="@string/payer_address_1"/>
 
     <TextView
@@ -44,6 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="27"
+        android:lines="2"
         android:hint="@string/payer_address_2"/>
 
     <TextView
@@ -56,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:maxLength="15"
         android:hint="@string/default_amount"/>
 
     <TextView
@@ -68,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="4"
         android:hint="@string/default_model"/>
 
     <TextView
@@ -80,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="22"
         android:hint="@string/reference_number"/>
 
     <TextView
@@ -92,6 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
+        android:maxLength="35"
         android:hint="@string/description_of_payment"/>
 
 </LinearLayout>

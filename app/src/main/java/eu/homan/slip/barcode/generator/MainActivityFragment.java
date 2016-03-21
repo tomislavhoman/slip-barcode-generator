@@ -1,7 +1,10 @@
 package eu.homan.slip.barcode.generator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +45,54 @@ public class MainActivityFragment extends Fragment {
         txtAmount.setText(R.string.default_amount);
         txtReferenceNumber.setText(generateDefaultReferenceNumber());
 
+        txtAmount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    final EditText amountEditText = (EditText) v;
+                    final String amountText = amountEditText.getText().toString();
+                    if (TextUtils.isEmpty(amountText)) {
+                        return;
+                    }
+
+                    if (!amountText.contains(".")) {
+                        amountEditText.setText(amountText + ".00");
+                    } else {
+                        final int dotPosition = amountText.lastIndexOf(".");
+                        final int clipNumber = amountText.length() - dotPosition - 3;
+                        if (clipNumber == 0) {
+                            return;
+                        } else if (clipNumber == -2) {
+                            amountEditText.setText(amountText + "00");
+                        } else if (clipNumber == -1) {
+                            amountEditText.setText(amountText + "0");
+                        } else {
+                            amountEditText.setText(amountText.substring(0, amountText.length() - clipNumber));
+                        }
+                    }
+                }
+            }
+        });
+
         return root;
     }
 
-    public void makeBarCode() {
+    public String generateTransactionData() {
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
+        return TransactionDataBuilder.create()
+                .recipientName(preferences.getString("pref_recipient_name", ""))
+                .recipientAddress1(preferences.getString("pref_recipient_address_1", ""))
+                .recipientAddress2(preferences.getString("pref_recipient_address_2", ""))
+                .recipientIban(preferences.getString("pref_recipient_iban", ""))
+                .payerName(txtPayerName.getText().toString())
+                .payerAddress1(txtPayerAddress1.getText().toString())
+                .payerAddress2(txtPayerAddress2.getText().toString())
+                .amount(txtAmount.getText().toString())
+                .model(txtModel.getText().toString())
+                .referenceNumber(txtReferenceNumber.getText().toString())
+                .descriptionOfPayment(txtDescriptionOfPayment.getText().toString())
+                .build();
     }
 
     private String generateDefaultReferenceNumber() {

@@ -10,6 +10,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:maxLength="25"
         android:title="@string/pref_title_recipient_name" />
 
     <EditTextPreference
@@ -19,6 +20,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:maxLength="25"
         android:title="@string/pref_title_recipient_address_1" />
 
     <EditTextPreference
@@ -28,6 +30,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:maxLength="27"
         android:title="@string/pref_title_recipient_address_2" />
 
     <EditTextPreference
@@ -37,6 +40,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:maxLength="21"
         android:title="@string/pref_title_recipient_iban" />
 
 </PreferenceScreen>
