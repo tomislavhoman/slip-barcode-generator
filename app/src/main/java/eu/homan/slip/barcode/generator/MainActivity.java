@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 Toast.makeText(MainActivity.this, transactionData, Toast.LENGTH_LONG).show();
+                BarcodeDialog.create(transactionData).show(getFragmentManager(), BarcodeDialog.class.getSimpleName());
             }
         });
 
