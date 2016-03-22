@@ -48,6 +48,7 @@ public final class BarcodeDialog extends DialogFragment {
             final String transactionData = arguments.getString(KEY_TRANSACTION_DATA, "");
             final int barcodeSize = arguments.getInt(KEY_BARCODE_SIZE, -1);
             if (!TextUtils.isEmpty(transactionData) && barcodeSize > -1) {
+                getDialog().getWindow().setLayout(barcodeSize, barcodeSize);
                 final Bitmap barcodeBitmap = new BitmapEncoder(transactionData, barcodeSize, barcodeSize).encode();
                 imgBarcode.setImageBitmap(barcodeBitmap);
 

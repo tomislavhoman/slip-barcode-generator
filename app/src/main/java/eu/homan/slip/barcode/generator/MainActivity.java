@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String transactionData = mainActivityFragment.generateTransactionData();
 
-                Snackbar.make(view, "Generiram bar code", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Generiram bar code", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
 
-                Toast.makeText(MainActivity.this, transactionData, Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this, transactionData, Toast.LENGTH_LONG).show();
                 BarcodeDialog.create(transactionData, width).show(getFragmentManager(), BarcodeDialog.class.getSimpleName());
             }
         });
