@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/img_barcode"
-        android:layout_width="@dimen/barcode_size"
-        android:layout_height="@dimen/barcode_size" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
