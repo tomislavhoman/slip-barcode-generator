@@ -43,7 +43,15 @@ public final class BitmapEncoder {
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
 
-    Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {
+    Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int imgWidth, int imgHeight) throws WriterException {
+
+        contents = contents.toUpperCase()
+                .replace('Č', 'C')
+                .replace('Ć', 'C')
+                .replace('Š', 'S')
+                .replace('Ž', 'Z')
+                .replace('Đ', 'd');
+
         String contentsToEncode = contents;
         if (contentsToEncode == null) {
             return null;
@@ -51,13 +59,14 @@ public final class BitmapEncoder {
         Map<EncodeHintType, Object> hints = null;
         String encoding = guessAppropriateEncoding(contentsToEncode);
         if (encoding != null) {
-            hints = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
+            hints = new EnumMap<>(EncodeHintType.class);
             hints.put(EncodeHintType.CHARACTER_SET, encoding);
         }
+
         MultiFormatWriter writer = new MultiFormatWriter();
         BitMatrix result;
         try {
-            result = writer.encode(contentsToEncode, format, img_width, img_height, hints);
+            result = writer.encode(contentsToEncode, format, imgWidth, imgHeight, hints);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
             return null;
